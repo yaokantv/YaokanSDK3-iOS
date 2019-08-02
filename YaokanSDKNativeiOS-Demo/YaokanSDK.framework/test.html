@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cmn-Hans">
+    <meta charset="UTF-8">
+    <title>DSBridge Test</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=0.5,user-scalable=no"/>
+    <!--require dsbridge init js-->
+<!--    <script src="dsbridge2.js"> </script>-->
+</head>
+<style>
+    .btn {
+        text-align: center;
+        background: #eee;
+        color: #000;
+        padding: 20px;
+        margin: 30px;
+        font-size: 24px;
+        border-radius: 4px;
+        box-shadow: 4px 2px 10px #999;
+    }
+
+    .btn:active {
+        opacity: .7;
+        box-shadow: 4px 2px 10px #555;
+    }
+
+
+
+</style>
+<body>
+<div class="btn" onclick="smartConfig()">配网</div>
+<div class="btn" onclick="sendDeviceCmd2('light_on')">开灯</div>
+<div class="btn" onclick="sendDeviceCmd2('light_off')">关灯</div>
+<div class="btn" onclick="sendDeviceCmd2('lightTest')">测试设备</div>
+<div class="btn" onclick="sendDeviceCmd2('checkVersion')">检测版本</div>
+<div class="btn" onclick="sendDeviceCmd2('update')">更新</div>
+<div class="btn" onclick="sendDeviceCmd2('init')">重置硬件</div>
+<div class="btn" onclick="getDeviceList()">获取设备列表</div>
+<div class="btn" onclick="getRemoteControlList()">获取遥控器列表数据</div>
+<div class="btn" onclick="saveRCLocal()">本地保存遥控器</div>
+<div class="btn" onclick="saveRC()">保存遥控器(美的风扇)</div>
+<div class="btn" onclick="saveIR()">发IR</div>
+<div class="btn" onclick="saveRF()">发RF</div>
+<div class="btn" onclick="sendRCLocal()">本地发码</div>
+
+<script>
+
+    function deviceEventHandler(event) {
+        var result = event;
+        alert(result)
+    }
+
+    function resultCallback (resultStr) {
+        var result = resultStr;
+        alert(resultStr)
+    }
+
+    function smartConfig() {
+        var str = '{"ssid":"Suncam-Openwrt","password":"yaokan0923"}';
+        window.yaokan.deviceSmartConfig(JSON.parse(str),resultCallback)
+    }
+
+    function sendDeviceCmd2(cmd){
+        var row2 = '{"did":"FFE7BF387DAF1B83","cmd":"'+cmd+'"}';
+        yaokan.sendDeviceCmd(JSON.parse(row2),resultCallback)
+    }
+
+    function saveRC() {
+        var DysonFan = '{"be_rmodel":"1","bid":0,"codeset":"0","name":"\U6234\U68ee",' +
+        '"rc_command":{' +
+            '"power":{' +
+                '"key":"power",' +
+                '"kn":"\U7535\U6e90",' +
+                '"short":"",' +
+                '"src":"Hsf6efxZ9tNQ+eeF+V80s/p26hzjzQbIvxywuhpLDLOpuHWNaSpMEPLtBYwANkLQWM4rTWo0wI0V1ykHwL7RYi0t7YmttncBvHezmxEwOMM="' +
+            '}' +
+        '},' +
+        '"rdesc":"",' +
+        '"rid":"20021254360211",' +
+        '"rmodel":"1",' +
+        '"t":"6",' +
+        '"v":"1",' +
+        '"zip":"1"} ';
+        
+        
+        var MideaFan = '{"be_rmodel":"FS40-13ER FS40-15GR  KYS30-10CR","bid":0,"codeset":"0","name":"Media \U6234\U68ee",' +
+        '"rc_command":{' +
+            '"fanspeed":{' +
+            '"key":"fanspeed",' +
+            '"kn":"\U98ce\U901f",' +
+            '"short":"00101FE07F807F8",' +
+            '"src":"pmKNyaHfBE20LC0UZhRd0pk5Sfa1Il090XP3yAiE9cXPVGHwikvBX1FlAuhtoGFkvoTXuiLQl2RXCzLnSc7F1w=="' +
+            '},' +
+            '"mode":{' +
+            '"key":"mode",' +
+            '"kn":"\U6a21\U5f0f",' +
+            '"short":"00101FE0FF00FF0",' +
+            '"src":"pmKNyaHfBE20LC0UZhRd0sZ58CTN811c140TUb2BzTTHq8yg3hPMQ906+MBg6Yq5gjdLwPJgrdWd1EFSkHyinw=="' +
+            '},' +
+            '"mute":{' +
+            '"key":"mute",' +
+            '"kn":"\U9759\U97f3",' +
+            '"short":"00101FE50AF50AF",' +
+            '"src":"pmKNyaHfBE20LC0UZhRd0o/H726PmgGb1dIwGGRfLjnBTd6Bf99tFR7jKlusDNdCcwzy7tHIU5c+E4g0crRxcg=="' +
+            '},' +
+            '"oscillation":{' +
+            '"key":"oscillation",' +
+            '"kn":"\U6447\U5934 ",' +
+            '"short":"00101FE13EC13EC",' +
+            '"src":"pmKNyaHfBE20LC0UZhRd0obcyf8IQtXcahiZK+FgDDK4boUHUs/df6fFU148s2/INnv5fhnCGqpy8yv8bDNvVA=="' +
+            '},' +
+            '"power":{' +
+            '"key":"power",' +
+            '"kn":"\U7535\U6e90",' +
+            '"short":"00101FE03FC03FC",' +
+            '"src":"pmKNyaHfBE20LC0UZhRd0toFASSw+8ifLe/55mkbf+yE5VQMHUpPv4laS6zYIPfxmT1ymlm4lTaCgRYaz8nNDg=="' +
+            '},' +
+            '"poweroff":{' +
+            '"key":"poweroff",' +
+            '"kn":"\U5173\U673a ",' +
+            '"short":"00101FE03FC03FC",' +
+            '"src":"pmKNyaHfBE20LC0UZhRd0toFASSw+8ifLe/55mkbf+yE5VQMHUpPv4laS6zYIPfxmT1ymlm4lTaCgRYaz8nNDg=="' +
+            '},' +
+            '"timer":{' +
+            '"key":"timer",' +
+            '"kn":"\U5b9a\U65f6",' +
+            '"short":"00101FE0BF40BF4",' +
+            '"src":"pmKNyaHfBE20LC0UZhRd0tIQkPlOQ+uNGM995Q40jN1Xr3QMCClBaCcPdLE/xXMmKUA5KnlKxTgN3GFiRoT+Fg=="' +
+            '}' +
+        '},' +
+        '"rdesc":"",' +
+        '"rid":"20150617170201",' +
+        '"rmodel":"FS40-13ER FS40-15GR  KYS30-10CR",' +
+        '"t":"6",' +
+        '"v":"1",' +
+        '"zip":"1"} ';
+        
+        window.yaokan.saveRemoteControl(JSON.parse(MideaFan),resultCallback)
+    }
+
+    function saveRCLocal() {
+        var str = '{"did":"FFE7BF387DAF1B83","rid":"20150617170201"}';
+        window.yaokan.saveRCLocal(JSON.parse(str),resultCallback)
+    }
+
+    function sendRCLocal() {
+        var str = '{"did":"FFE7BF387DAF1B83","cmd":"'+1+'","rid":"20150617170201"}';
+        window.yaokan.sendRCLocal(JSON.parse(str),resultCallback)
+    }
+
+
+    function sendDeviceCmd2(cmd){
+        var row2 = '{"did":"FFE7BF387DAF1B83","cmd":"'+cmd+'"}';
+        yaokan.sendDeviceCmd(JSON.parse(row2),resultCallback)
+    }
+
+    function saveIR(){
+        
+    }
+
+    function saveRF(){
+        
+    }
+
+    function getDeviceList(){
+        
+    }
+
+    function getOrderMatchRemoteList(){
+        
+    }
+
+
+</script>
+</body>
+</html>

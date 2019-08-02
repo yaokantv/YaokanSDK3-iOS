@@ -1,0 +1,6 @@
+framework module YaokanSDK {
+  umbrella header "YaokanSDK.h"
+
+  export *
+  module * { export * }
+}
