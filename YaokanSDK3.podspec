@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
 
   spec.name         = "YaokanSDK3"
   spec.version      = "1.0.0"
-  spec.summary      = "YaokanSDK3  makes your app control your home."
+  spec.summary      = "YaokanSDK3 makes your app control your home."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -39,8 +39,8 @@ Pod::Spec.new do |spec|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  spec.license      = "MIT"
-  # spec.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  #spec.license      = "MIT"
+  spec.license      = { :type => "MIT", :file => "License.txt" }
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -53,7 +53,7 @@ Pod::Spec.new do |spec|
   #  profile URL.
   #
 
-  spec.author           = { "YaokanTV" => "yaokantv@qq.com" }
+  spec.author           = { "YaokanTV" => "postmaster@yaokantv.com" }
 
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
