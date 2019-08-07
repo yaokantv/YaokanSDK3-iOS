@@ -8,7 +8,7 @@ use_frameworks!
 
 target 'YaokanSDKNativeiOS-Demo' do
 
-pod 'YaokanSDK', :path => './'
+pod 'YaokanSDK3', :path => './'
 
 end
 

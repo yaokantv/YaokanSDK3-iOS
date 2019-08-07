@@ -20,6 +20,8 @@
 
 extern NSString * _Nonnull const NotificationDeviceListUpdate;
 
+extern NSInteger const YKSDK_SMARTCONFIG_TIMEOUT;
+
 typedef NS_ENUM(NSInteger, RemoteDeviceType){
     kDeviceTypeUnkown = -1,
     kDeviceTypeCustom = 0,          // 自定义

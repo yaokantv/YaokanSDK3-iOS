@@ -26,6 +26,8 @@
 @property (nonatomic, copy)   NSString *ykcId;              // 硬件 mac地址
 @property (nonatomic, copy)   NSDictionary *rc_command;     // 支持指令
 
+@property (nonatomic, copy)   NSString *study_Id;
+
 @property (nonatomic, strong)   NSArray<YKRemoteMatchDeviceKey *> *matchKeys;   // 匹配的按键数组
 
 @end

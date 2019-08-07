@@ -11,6 +11,7 @@
 #import "YKCenterCommon.h"
 #import "YKMatchDeviceTableViewController.h"
 #import "YKMatchACViewController.h"
+#import "YKMatchRFKeyTableViewController.h"
 
 @interface YKBrandTableViewController ()
 @property (nonatomic, strong) NSArray<YKRemoteDeviceBrand *> *brandList;
@@ -62,7 +63,18 @@
         vc.deviceType = self.deviceType;
         vc.deviceBrand = brand;
         [self.navigationController pushViewController:vc animated:YES];
-    }else{
+    }else if(_deviceType.tid.integerValue == kDeviceRFSwitchType
+             ||_deviceType.tid.integerValue == kDeviceRFSocketType
+             ||_deviceType.tid.integerValue == kDeviceRFCurtainType
+             ||_deviceType.tid.integerValue == kDeviceRFHangerType){
+
+        YKRemoteDeviceBrand *brand = self.brandList[indexPath.row];
+        YKMatchRFKeyTableViewController *vc = [[UIStoryboard storyboardWithName:@"Remote" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([YKMatchRFKeyTableViewController class])];
+        vc.tid = self.deviceType.tid.integerValue;
+        vc.bid = brand.bid;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else{
         YKRemoteDeviceBrand *brand = self.brandList[indexPath.row];
         YKMatchDeviceTableViewController *vc = [[UIStoryboard storyboardWithName:@"Remote" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([YKMatchDeviceTableViewController class])];
         vc.deviceType = self.deviceType;

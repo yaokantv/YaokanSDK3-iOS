@@ -47,6 +47,7 @@
 		500E052322EEF3CD00DD6A57 /* YKMatchACViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 500E052222EEF3CD00DD6A57 /* YKMatchACViewController.m */; };
 		501FB08522AE25EF003A6C52 /* YKRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 501FB08422AE25EF003A6C52 /* YKRegistViewController.m */; };
 		5027710A229E5D190005C934 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 50277108229E5D190005C934 /* MBProgressHUD.m */; };
+		5034CFB822F96F44006C9E6A /* YKMatchRFKeyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5034CFB722F96F44006C9E6A /* YKMatchRFKeyTableViewController.m */; };
 		50A97E1022E994920030B4DC /* YKSecMatchDeviceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A97E0F22E994920030B4DC /* YKSecMatchDeviceTableViewController.m */; };
 		50A97E1322E9A61D0030B4DC /* YKMatchKeyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A97E1222E9A61C0030B4DC /* YKMatchKeyTableViewController.m */; };
 		50C0D8B222A504970059B1E4 /* YKRemoteACViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C0D8B022A504960059B1E4 /* YKRemoteACViewController.m */; };
@@ -156,6 +157,8 @@
 		501FB08422AE25EF003A6C52 /* YKRegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKRegistViewController.m; sourceTree = "<group>"; };
 		50277108229E5D190005C934 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		50277109229E5D190005C934 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		5034CFB622F96F44006C9E6A /* YKMatchRFKeyTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMatchRFKeyTableViewController.h; sourceTree = "<group>"; };
+		5034CFB722F96F44006C9E6A /* YKMatchRFKeyTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKMatchRFKeyTableViewController.m; sourceTree = "<group>"; };
 		50820EBD22A1128500D8C87F /* YaokanSDKNativeiOS-Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "YaokanSDKNativeiOS-Demo.entitlements"; sourceTree = "<group>"; };
 		50A97E0E22E994920030B4DC /* YKSecMatchDeviceTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSecMatchDeviceTableViewController.h; sourceTree = "<group>"; };
 		50A97E0F22E994920030B4DC /* YKSecMatchDeviceTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSecMatchDeviceTableViewController.m; sourceTree = "<group>"; };
@@ -359,6 +362,8 @@
 				50A97E0F22E994920030B4DC /* YKSecMatchDeviceTableViewController.m */,
 				50A97E1122E9A61C0030B4DC /* YKMatchKeyTableViewController.h */,
 				50A97E1222E9A61C0030B4DC /* YKMatchKeyTableViewController.m */,
+				5034CFB622F96F44006C9E6A /* YKMatchRFKeyTableViewController.h */,
+				5034CFB722F96F44006C9E6A /* YKMatchRFKeyTableViewController.m */,
 				500E051E22EEC3CC00DD6A57 /* YKSetboxLocationViewController.h */,
 				500E051F22EEC3CC00DD6A57 /* YKSetboxLocationViewController.m */,
 				500E052122EEF3CD00DD6A57 /* YKMatchACViewController.h */,
@@ -623,6 +628,7 @@
 				3F5A21B01E27666F006BF365 /* AppDelegate.m in Sources */,
 				3FE818CA1E723994002FD52F /* YKTextCell.m in Sources */,
 				3FA2D8191E2C7F3B00551F8F /* UAProgressView.m in Sources */,
+				5034CFB822F96F44006C9E6A /* YKMatchRFKeyTableViewController.m in Sources */,
 				3FA2D8261E2E0DE900551F8F /* YKBrandTableViewController.m in Sources */,
 				3F5A21AD1E27666F006BF365 /* main.m in Sources */,
 				3FA2D80A1E2C68B400551F8F /* RadioButton.m in Sources */,

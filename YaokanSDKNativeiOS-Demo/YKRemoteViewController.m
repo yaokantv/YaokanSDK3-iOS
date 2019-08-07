@@ -47,11 +47,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     YKRemoteDeviceKey *key = self.remote.keys[indexPath.row];
     
-    [YaokanSDK sendRemoteWithYkcId:[[YKCenterCommon sharedInstance] currentYKCId] remoteId:key.remoteId remoteDeviceTypeId:key.typeId cmdkey:key.key  studyId:self.remote.study_Id completion:^(BOOL result, NSError * _Nonnull error) {
+    [YaokanSDK sendRemoteWithYkcId:[[YKCenterCommon sharedInstance] currentYKCId] remoteDevice:self.remote cmdkey:key.key completion:^(BOOL result, NSError * _Nonnull error) {
         
     }];
-
-    
 
 }
 
