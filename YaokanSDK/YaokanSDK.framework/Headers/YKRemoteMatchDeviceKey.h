@@ -22,5 +22,6 @@
 @property (nonatomic, assign)   NSInteger bid;             //品牌Id
 @property (nonatomic, assign)   NSInteger tid;             //品牌Id
 @property (nonatomic, assign)   NSUInteger kid;             //指令
+@property (nonatomic, assign)   BOOL  standard; //是否为标准键
 
 @end

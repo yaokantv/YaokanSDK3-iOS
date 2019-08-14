@@ -198,11 +198,11 @@
     if (dev.netStatus == 1 || dev.netStatus == 2) {
         cell.imageView.backgroundColor = [UIColor brownColor];
         
-        cell.lan.text = dev.isLAN?NSLocalizedString(@"Lan", nil):NSLocalizedString(@"Remote", nil);
+        cell.lan.text = @"在线";
     }
     else {
         cell.imageView.backgroundColor = [UIColor lightGrayColor];
-        cell.lan.text = @"";
+        cell.lan.text = @"离线";
     }
 }
 

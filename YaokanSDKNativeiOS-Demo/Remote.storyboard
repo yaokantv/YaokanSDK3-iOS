@@ -13,7 +13,7 @@
         <!--类型列表-->
         <scene sceneID="EqK-qj-8tK">
             <objects>
-                <tableViewController id="PJk-6x-cu6" customClass="YKDeviceTypeViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="YKDeviceTypeViewController" id="PJk-6x-cu6" customClass="YKDeviceTypeViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZMn-cq-Mej">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

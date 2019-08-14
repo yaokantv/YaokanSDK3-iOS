@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int16_t kid;
 @property (nullable, nonatomic, copy) NSString *remoteId;
 @property (nonatomic) int64_t typeId;
+@property (nonatomic) BOOL standard;
 
 @end
 

@@ -268,6 +268,11 @@ FOUNDATION_EXPORT const unsigned char YaokanSDKVersionString[];
 
 
 
++ (void)saveRFRemoteDeivceWithYKCId:(NSString *)ykcId
+                        matchDevice:(YKRemoteMatchDevice *)matchDevice
+                         completion:(void (^__nullable)(YKRemoteDevice *remote, NSError *error))completion;
+
+
 /**
  请求空调匹配数据
 
@@ -460,6 +465,17 @@ FOUNDATION_EXPORT const unsigned char YaokanSDKVersionString[];
                              remote:(YKRemoteDevice *)remote
                          completion:(void (^__nullable)(NSError *error))completion;
 
+
+/**
+ 变更遥控器名字
+ 
+ @param ykcId 硬件mac地址
+ @param remote YKRemoteDevice 对象
+ @param completion 回调
+ */
++ (BOOL)updateRemoteDeivceNameWithName:(NSString *)name
+                                remote:(YKRemoteDevice *)remote;
+
 /**
  切换遥控中心LED灯开关
  
@@ -490,20 +506,6 @@ FOUNDATION_EXPORT const unsigned char YaokanSDKVersionString[];
 + (void)restoreWithYKCId:(NSString *)ykcId;
 
 
-/**
- 检查更新
- 
- @param ykcId 硬件mac地址
- */
-+ (void)firmwareCheckWithYKCId:(NSString *)ykcId;
-
-
-/**
- 更新固件
- 
- @param ykcId 硬件mac地址
- */
-+ (void)firmwareUpdateWithYKCId:(NSString *)ykcId;
 
 
 /**
@@ -556,10 +558,20 @@ FOUNDATION_EXPORT const unsigned char YaokanSDKVersionString[];
 /**
  获取硬件版本
 
- @param ykcId 下苹果mac地址
+ @param ykcId 遥看小苹果mac地址
  @param completion 回调version 为当前版本 otaVersion为最新版本
  */
 + (void)checkDeviceVersion:(NSString *)ykcId completion:(void (^__nullable)(NSString *version,NSString *otaVersion,NSError *error))completion;
+
+
+/**
+ 更新硬件固件版本
+
+ @param ykcId 遥看小苹果mac地址
+ @param progress 配网进度
+ @param completion 回调 flag 判断是否升级成功。
+ */
++ (void)updateDeviceVersion:(NSString *)ykcId progress:(void (^__nullable)(float progressNum))progress completion:(void (^__nullable)(BOOL flag,NSError *error))completion;
 
 /**
  导出遥控小苹果列表

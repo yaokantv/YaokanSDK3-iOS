@@ -11,8 +11,10 @@
 #import "YKRemoteViewController.h"
 #import "YKRemoteACViewController.h"
 #import "YKCenterCommon.h"
+#import "YKDeviceTypeViewController.h"
+#import "MBProgressHUD.h"
 
-@interface YKRemoteTableViewController () <NSFetchedResultsControllerDelegate>
+@interface YKRemoteTableViewController () <NSFetchedResultsControllerDelegate,UIActionSheetDelegate>
 
 @property (nonatomic) NSArray<YKRemoteDevice *> *remotes;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -117,37 +119,33 @@
     YKRemoteDevice *device = self.remotes[indexPath.row];
     NSDictionary *json = [device toJsonObject];
     NSLog(@"%@",json);
-//    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"请输入名称"
-//                                                                message:@""
-//                                                         preferredStyle:(UIAlertControllerStyleAlert)];
-//    [ac addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-//        NSString *displayName = device.showName;
-//        if (displayName.length == 0) {
-//            displayName = device.name;
-//        }
-//
-//        textField.placeholder = displayName;
-//    }];
-//
-//    UIAlertAction *cancelAction = [UIAlertAction
-//                                   actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
-//                                   style:UIAlertActionStyleCancel
-//                                   handler:^(UIAlertAction *action)
-//                                   {
-//                                       NSLog(@"Cancel action");
-//                                   }];
-//    UIAlertAction *okAction = [UIAlertAction
-//                               actionWithTitle:NSLocalizedString(@"OK", @"OK action")
-//                               style:UIAlertActionStyleDefault
-//                               handler:^(UIAlertAction *action)
-//                               {
-//                                   UITextField *showNameField = ac.textFields.firstObject;
-//                                   device.showName = showNameField.text;
-//                                   [device save];
-//                               }];
-//    [ac addAction:cancelAction];
-//    [ac addAction:okAction];
-//    [self presentViewController:ac animated:YES completion:nil];
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"请输入名称"
+                                                                message:@""
+                                                         preferredStyle:(UIAlertControllerStyleAlert)];
+    [ac addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        NSString *displayName = device.name;
+        textField.placeholder = displayName;
+    }];
+
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"Cancel action");
+                                   }];
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   UITextField *showNameField = ac.textFields.firstObject;
+                                   device.name = showNameField.text;
+                                   [device save];
+                               }];
+    [ac addAction:cancelAction];
+    [ac addAction:okAction];
+    [self presentViewController:ac animated:YES completion:nil];
 }
 
 #pragma mark - Navigation
@@ -193,5 +191,75 @@
     
     return YES;
 }
+
+
+- (IBAction)actionSheet:(id)sender {
+    UIActionSheet *actionSheet = nil;
+//    NSString *appVersion = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Program Version", nil), [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+//    NSString *sdkVersion = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"SDK Version", nil), [YaokanSDK sdkVersion]];
+//
+    
+    actionSheet = [[UIActionSheet alloc]
+                   initWithTitle:@"选择操作"
+                   delegate:self
+                   cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                   destructiveButtonTitle:nil
+                   otherButtonTitles:
+                   NSLocalizedString(@"添加遥控", nil),
+                   NSLocalizedString(@"检查升级", nil),
+                   NSLocalizedString(@"升级固件", nil)
+                   , nil];
+    
+    actionSheet.actionSheetStyle = UIBarStyleBlackTranslucent;
+    [actionSheet showInView:self.view];
+}
+
+#pragma mark - actionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSInteger offset = 0;
+    //    if (![GizCommon sharedInstance].isLogin) {
+    //        offset = -1;
+    //    }
+    if (buttonIndex == offset) {
+//        [self performSegueWithIdentifier:@"AddYK" sender:nil];
+        YKDeviceTypeViewController *vc = [[UIStoryboard storyboardWithName:@"Remote" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([YKDeviceTypeViewController class])];
+        UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self.navigationController showViewController:navc sender:nil];
+    }
+    else if (buttonIndex == offset+1) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+        [YaokanSDK checkDeviceVersion:[[YKCenterCommon sharedInstance] currentYKCId] completion:^(NSString * _Nonnull version, NSString * _Nonnull otaVersion, NSError * _Nonnull error) {
+            [MBProgressHUD hideHUDForView:self.view animated:NO];
+            NSString *message = [NSString stringWithFormat:@"当前版本:%@ 最新版本:%@",version,otaVersion];
+            
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"检查升级" message:message delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil];
+            [av show];
+        }];
+    }else if (buttonIndex == offset+2) {
+//        [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.detailsLabel.text = @"开始升级...";
+        hud.removeFromSuperViewOnHide = YES;
+        [hud showAnimated:YES];
+        
+        [YaokanSDK  updateDeviceVersion:[[YKCenterCommon sharedInstance] currentYKCId] progress:^(float progressNum) {
+            NSString *pText = [NSString stringWithFormat:@"%.0f%%",progressNum];
+            hud.detailsLabel.text = pText;
+            NSLog(@"%@",pText);
+        } completion:^(BOOL flag, NSError * _Nonnull error) {
+            [hud hideAnimated:YES];
+            NSString *message = @"升级失败";
+            if (flag) {
+                message = @"升级成功,小苹果将自动重启";
+            }
+            
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"检查升级" message:message delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil];
+            [av show];
+        }];
+        
+    }
+}
+
 
 @end

@@ -87,15 +87,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="遥控器列表" id="7WV-6s-2aT">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bI8-yO-UH5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="bI8-yO-UH5">
                             <connections>
-                                <segue destination="Aox-3M-A5D" kind="presentation" id="8bW-UH-gFu"/>
+                                <action selector="actionSheet:" destination="H5w-0d-FHe" id="VfM-bs-hER"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="Osc-nB-0vq" kind="show" identifier="ac" id="hCg-WH-Pqv"/>
                         <segue destination="X3e-mb-4SN" kind="show" identifier="LearnSegue" id="9qh-8h-oe0"/>
+                        <segue destination="Aox-3M-A5D" kind="presentation" identifier="AddYK" id="PC0-g1-Lzv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgQ-EU-l9n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -152,7 +153,7 @@
                 <viewControllerPlaceholder storyboardName="Remote" referencedIdentifier="YKAddRemote" id="Aox-3M-A5D" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hot-aG-CZM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2582" y="574"/>
+            <point key="canvasLocation" x="2458" y="559"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jb2-oZ-2o1">

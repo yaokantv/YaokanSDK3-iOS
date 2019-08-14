@@ -58,7 +58,12 @@
     __weak __typeof(self)weakSelf = self;
     [YaokanSDK requestRemoteDeivceWithYKCId:[[YKCenterCommon sharedInstance] currentYKCId] remoteDeviceTypeId:matchDevice.typeId remoteDeviceId:matchDevice.rid completion:^(NSArray * _Nonnull matchKeys, NSError * _Nonnull error) {
         [MBProgressHUD  hideHUDForView:weakSelf.view animated:YES];
-        keys = matchKeys;
+        keys = [matchKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            if ( ((YKRemoteMatchDeviceKey *)obj1).standard) {
+                return NSOrderedAscending;
+            }
+            return NSOrderedDescending;
+        }];
         [weakSelf.tableView reloadData];
     }];
 }
@@ -75,6 +80,16 @@
     YKRemoteMatchDeviceKey *key = keys[indexPath.row];
     cell.textLabel.text = key.key;
     cell.detailTextLabel.text = key.kn;
+    
+    
+    if (key.standard) {
+        cell.textLabel.textColor = [UIColor blueColor];
+        cell.detailTextLabel.textColor = [UIColor blueColor];
+    }else{
+        cell.textLabel.textColor = [UIColor blackColor];
+        cell.detailTextLabel.textColor = [UIColor blackColor];
+    }
+    
     return cell;
 }
 

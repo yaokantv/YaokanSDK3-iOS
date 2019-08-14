@@ -77,22 +77,16 @@
         [YaokanSDK learnRFMatchingWithYKCId:[[YKCenterCommon sharedInstance] currentYKCId] remote:matchDevice key:key.key originRid:matchDevice.rid completion:^(NSString * _Nonnull ridNew, NSError * _Nonnull error) {
             
         }];
-//        [YaokanSDK learnIRWithYKCId:[[YKCenterCommon sharedInstance] currentYKCId] remote:_remote key:key.key originRid:_remote.remoteId
-//                         completion:^(NSString * _Nonnull ridNew, NSError * _Nonnull error) {
-//                             if (error == nil) {
-//                                 self.remote.remoteId = ridNew;
-//                             }
-//                         }];
+
     }
     
 }
 
 - (IBAction)save:(id)sender {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     //保存
     __weak __typeof(self)weakSelf = self;
-    [YaokanSDK saveRemoteDeivceWithYKCId:[[YKCenterCommon sharedInstance] currentYKCId] remoteDeviceTypeId:_tid remoteDeviceId:matchDevice.rid completion:^(YKRemoteDevice * _Nonnull remote, NSError * _Nonnull error) {
-        [MBProgressHUD  hideHUDForView:weakSelf.view animated:YES];
+    [YaokanSDK saveRFRemoteDeivceWithYKCId:[[YKCenterCommon sharedInstance] currentYKCId] matchDevice:matchDevice
+                                completion:^(YKRemoteDevice * _Nonnull remote, NSError * _Nonnull error) {
         if (remote && error == nil) {
             [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
         }
