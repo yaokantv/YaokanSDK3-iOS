@@ -56,7 +56,8 @@
 -(void)requestMatchKey:(YKRemoteMatchDevice *)matchDevice{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak __typeof(self)weakSelf = self;
-    [YaokanSDK requestRemoteDeivceWithYKCId:[[YKCenterCommon sharedInstance] currentYKCId] remoteDeviceTypeId:matchDevice.typeId remoteDeviceId:matchDevice.rid completion:^(NSArray * _Nonnull matchKeys, NSError * _Nonnull error) {
+    [YaokanSDK requestRemoteDeivceWithYKCId:[[YKCenterCommon sharedInstance] currentYKCId] remoteDevice:matchDevice completion:^(YKRemoteMatchDevice * _Nonnull matchDevice, NSArray * _Nonnull matchKeys, NSError * _Nonnull error) {
+        
         [MBProgressHUD  hideHUDForView:weakSelf.view animated:YES];
         keys = [matchKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
             if ( ((YKRemoteMatchDeviceKey *)obj1).standard) {
@@ -65,7 +66,9 @@
             return NSOrderedDescending;
         }];
         [weakSelf.tableView reloadData];
+        
     }];
+    
 }
 
 #pragma mark - Table view data source
@@ -96,9 +99,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YKRemoteMatchDeviceKey *key = keys[indexPath.row];
-    [YaokanSDK sendRemoteWithYkcId:[[YKCenterCommon sharedInstance] currentYKCId] remoteId:key.rid remoteDeviceTypeId:_tid cmdkey:key.key completion:^(BOOL result, NSError * _Nonnull error) {
+    
+     YKRemoteMatchDevice *matchDevice = _matchList[curIdx];
+    
+    [YaokanSDK sendRemoteMatchingWithYkcId:[[YKCenterCommon sharedInstance] currentYKCId] matchDevice:matchDevice cmdkey:key.key completion:^(BOOL result, NSError * _Nonnull error) {
         
     }];
+    
 }
 
 - (IBAction)pre:(id)sender{

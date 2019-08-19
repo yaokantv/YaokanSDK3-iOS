@@ -57,6 +57,10 @@
     // Configure the cell...
     YKRemoteDeviceType *deviceType = self.typeList[indexPath.row];
     cell.textLabel.text = deviceType.name;
+    cell.detailTextLabel.text = @"";
+    if (deviceType.rf == 1) {
+        cell.detailTextLabel.text = @"射频";
+    }
     
     return cell;
 }

@@ -97,6 +97,14 @@ FOUNDATION_EXPORT const unsigned char YaokanSDKVersionString[];
 
 
 
+/**
+ 射频对码列表
+ 
+ @param ykcId 遥控中心 id
+ @param typeId 遥控码的设备类型 id
+ @param brandId 遥控码的品牌 id
+ @param completion 返回遥控码的匹配设备列表
+ */
 + (void)fetchRFRemoteDeviceWithYKCId:(NSString *)ykcId
                   remoteDeviceTypeId:(NSUInteger)typeId
                  remoteDeviceBrandId:(NSUInteger)brandId
@@ -231,10 +239,14 @@ FOUNDATION_EXPORT const unsigned char YaokanSDKVersionString[];
  匹配阶段遥控器发码
  
  @param mac  遥控中心 id
- @param matchDevice 匹配阶段的遥控器
- @param cmdKey 按键名
+ @param devicekey YKRemoteMatchDeviceKey 类型
  @param completion 回调
  */
++ (void)sendRemoteMatchingWithYkcId:(NSString *)mac
+                        cmdKey:(YKRemoteMatchDeviceKey *)devicekey
+                         completion:(void (^__nullable)(BOOL result, NSError *error))completion;
+
+
 + (void)sendRemoteMatchingWithYkcId:(NSString *)mac
                 matchDevice:(YKRemoteMatchDevice *)matchDevice
                      cmdkey:(NSString *)cmdKey
@@ -251,7 +263,19 @@ FOUNDATION_EXPORT const unsigned char YaokanSDKVersionString[];
 + (void)requestRemoteDeivceWithYKCId:(NSString *)ykcId
                   remoteDeviceTypeId:(NSUInteger)typeId
                       remoteDeviceId:(NSString *)remoteDeviceId
-                          completion:(void (^__nullable)(NSArray *matchKeys, NSError *error))completion;
+                          completion:(void (^__nullable)(NSArray *matchKeys, NSError *error))completion __deprecated_msg("use requestRemoteDeivceWithYKCId:(NSString *) remoteDevice:(YKRemoteMatchDevice *)  completion:(void (^__nullable)(YKRemoteMatchDevice *,NSArray *, NSError *))completion");
+
+/**
+ 请求匹配遥控器详情
+ 
+ @param ykcId 硬件mac地址
+ @param device 匹配遥控器YKRemoteMatchDevice类型
+ @param completion 回调
+ */
+
++ (void)requestRemoteDeivceWithYKCId:(NSString *)ykcId
+                        remoteDevice:(YKRemoteMatchDevice *)device
+                          completion:(void (^__nullable)(YKRemoteMatchDevice *matchDevice,NSArray *remote, NSError *error))completion;
 
 /**
  保存遥控器
@@ -469,9 +493,7 @@ FOUNDATION_EXPORT const unsigned char YaokanSDKVersionString[];
 /**
  变更遥控器名字
  
- @param ykcId 硬件mac地址
- @param remote YKRemoteDevice 对象
- @param completion 回调
+ @param name 遥控器名称
  */
 + (BOOL)updateRemoteDeivceNameWithName:(NSString *)name
                                 remote:(YKRemoteDevice *)remote;

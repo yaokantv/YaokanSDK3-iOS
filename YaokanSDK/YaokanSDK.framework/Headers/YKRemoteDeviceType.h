@@ -12,5 +12,8 @@
 
 @property (nullable, nonatomic, retain) NSString *name;
 @property (nullable, nonatomic, retain) NSNumber *tid;
+@property (nonatomic, assign) NSInteger rf;
+
++ (BOOL)isRF:(NSInteger)typeId;
 
 @end

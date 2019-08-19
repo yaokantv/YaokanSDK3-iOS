@@ -22,6 +22,8 @@ extern NSString * _Nonnull const NotificationDeviceListUpdate;
 
 extern NSInteger const YKSDK_SMARTCONFIG_TIMEOUT;
 
+extern NSInteger const  YKSDK_DEVICE_REG_TIMEOUT;
+
 typedef NS_ENUM(NSInteger, RemoteDeviceType){
     kDeviceTypeUnkown = -1,
     kDeviceTypeCustom = 0,          // 自定义
@@ -48,6 +50,10 @@ typedef NS_ENUM(NSInteger, RemoteDeviceType){
     kDeviceRFSocketType = 22,       // 射频遥控插座
     kDeviceRFCurtainType = 23,      // 射频遥控窗帘
     kDeviceRFHangerType = 24,       // 射频遥控衣架
+    kDeviceRFLightController = 25,  // 灯控器
+    kDeviceRFFanLight = 38,         // 风扇灯
+    kDeviceRFAirCooler = 41,        // 凉霸
+    kDeviceRFFan = 42,              // 射频风扇
 };
 
 #endif /* YaokanSDKHeader_h */

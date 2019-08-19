@@ -43,13 +43,13 @@ typedef NS_ENUM(NSInteger, RCDeviceNetStatus) {
 
 
 /**
- NSString类型。设备的备注信息，设备绑定后可以修改，默认为空
+ NSString类型。设备的备注信息，可以修改，默认为空
  */
 @property (strong, nonatomic) NSString * _Nonnull remark;
 
 
 /**
- NSString类型。设备的别名，设备绑定后可以修改，默认为空
+ NSString类型。设备的别名，可以修改，默认为空
  */
 @property (strong, nonatomic,readonly) NSString * _Nonnull alias;
 
@@ -74,9 +74,14 @@ typedef NS_ENUM(NSInteger, RCDeviceNetStatus) {
 
 
 
+/**
+ BOOL 是否支持射频
+ */
+@property (assign, nonatomic,readonly) BOOL rf;
 
 +(YKDevice *)deviceByMac:(NSString *)mac;
 - (void)updateRemark:(NSString * _Nullable)remark alias:(NSString *)alias;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -58,10 +58,12 @@
     
     _currentWindL = 0;
     _currentWindU = 0;
+    _currentModel = ACModelCool;
     
-//    for (YKRemoteMatchDeviceKey *key in self.remote.keys) {
-//        NSLog(@"%@",key.key);
-//    }
+    NSArray *speeds = _rc_command[@"attributes"][_currentModel][@"speed"];
+    NSInteger min = [[speeds objectAtIndex:0] integerValue];
+    _currentSpeed = min;
+
     _rc_command = [NSJSONSerialization JSONObjectWithData:[self.remote.rc_command dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
 }
 
@@ -79,6 +81,18 @@
         modelIndex++;
     }
     _currentModel = [self.modelKeys objectAtIndex:modelIndex];
+    
+    NSArray *speeds = _rc_command[@"attributes"][_currentModel][@"speed"];
+    NSInteger min = [[speeds objectAtIndex:0] integerValue];
+    NSInteger max = [[speeds objectAtIndex:speeds.count-1] integerValue];
+    
+    if (_currentSpeed >max) {
+        _currentSpeed = max;
+    }
+    
+    if (_currentSpeed < min) {
+        _currentSpeed = min;
+    }
   
     [self remoteControl];
     [self updateStatusView];

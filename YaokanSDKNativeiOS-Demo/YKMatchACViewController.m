@@ -76,6 +76,10 @@
     _currentWindL = 0;
     _currentWindU = 0;
     
+    _currentModel = ACModelCool;
+    _currentSpeed = 0;
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -91,6 +95,14 @@
         [MBProgressHUD hideHUDForView:weakSelf.view animated:NO];
         _matchDevice = remote;
         _rc_command = remote.rc_command;
+        
+        _currentModel = ACModelCool;
+        NSArray *speeds = _rc_command[@"attributes"][_currentModel][@"speed"];
+        NSInteger min = [[speeds objectAtIndex:0] integerValue];
+        _currentSpeed = min;
+        
+        [weakSelf updateStatusView];
+        
     }];
 }
 
@@ -102,6 +114,18 @@
         modelIndex++;
     }
     _currentModel = [self.modelKeys objectAtIndex:modelIndex];
+    
+    NSArray *speeds = _rc_command[@"attributes"][_currentModel][@"speed"];
+    NSInteger min = [[speeds objectAtIndex:0] integerValue];
+    NSInteger max = [[speeds objectAtIndex:speeds.count-1] integerValue];
+    
+    if (_currentSpeed >max) {
+        _currentSpeed = max;
+    }
+    
+    if (_currentSpeed < min) {
+        _currentSpeed = min;
+    }
     
     [self remoteControl];
     [self updateStatusView];

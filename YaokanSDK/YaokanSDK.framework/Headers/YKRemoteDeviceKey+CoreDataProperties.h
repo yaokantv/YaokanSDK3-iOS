@@ -25,10 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *one;
 @property (nonatomic) int16_t encode;
 @property (nullable, nonatomic, copy) NSString *key;
+@property (nullable, nonatomic, copy) NSString *reverse_key;
 @property (nonatomic) int16_t kid;
 @property (nullable, nonatomic, copy) NSString *remoteId;
 @property (nonatomic) int64_t typeId;
 @property (nonatomic) BOOL standard;
+@property (nonatomic) BOOL reverse;
+
 
 @end
 
