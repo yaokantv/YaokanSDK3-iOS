@@ -77,7 +77,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="tmI-u5-KSi" kind="show" identifier="normal" id="T7E-nq-5Tb"/>
+                                    <segue destination="2zu-kq-NoZ" kind="show" identifier="normal" id="O0D-S6-wt7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -146,6 +146,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5nA-bY-wt9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3420" y="155"/>
+        </scene>
+        <!--Remote View Controller-->
+        <scene sceneID="Jcs-X5-5Qw">
+            <objects>
+                <collectionViewController id="2zu-kq-NoZ" customClass="YKRemoteViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="uAj-U8-xqq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qdz-hR-n4o">
+                            <size key="itemSize" width="100" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="4" maxX="10" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="YKRemoteCellIdentifier" id="CTh-Mo-6gy" customClass="YKCollectionViewCell">
+                                <rect key="frame" x="10" y="4" width="100" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="key" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ygh-QF-1Yt">
+                                            <rect key="frame" x="39" y="27" width="19.5" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLX-Sv-GXO">
+                                            <rect key="frame" x="29.5" y="13" width="38" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="uLX-Sv-GXO" firstAttribute="top" secondItem="CTh-Mo-6gy" secondAttribute="top" constant="13" id="g05-fG-fTg"/>
+                                    <constraint firstItem="Ygh-QF-1Yt" firstAttribute="centerX" secondItem="CTh-Mo-6gy" secondAttribute="centerX" id="qWw-sV-yAQ"/>
+                                    <constraint firstItem="Ygh-QF-1Yt" firstAttribute="top" secondItem="uLX-Sv-GXO" secondAttribute="bottom" constant="-3" id="uOS-wA-XAe"/>
+                                    <constraint firstItem="uLX-Sv-GXO" firstAttribute="centerX" secondItem="CTh-Mo-6gy" secondAttribute="centerX" id="xwy-O8-rhZ"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="keyLabel" destination="Ygh-QF-1Yt" id="9Xv-LU-Jnf"/>
+                                    <outlet property="nameLabel" destination="uLX-Sv-GXO" id="9Ud-Lp-9QC"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="2zu-kq-NoZ" id="Uvk-ql-4RL"/>
+                            <outlet property="delegate" destination="2zu-kq-NoZ" id="ERU-mm-WGz"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FfV-p3-dcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4228" y="152.47376311844079"/>
         </scene>
         <!--YKAddRemote-->
         <scene sceneID="vOm-de-dqI">

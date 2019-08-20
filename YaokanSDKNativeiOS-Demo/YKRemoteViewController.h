@@ -10,6 +10,6 @@
 
 @class YKRemoteDevice;
 
-@interface YKRemoteViewController : UITableViewController
+@interface YKRemoteViewController : UICollectionViewController
 @property (nonatomic, strong) YKRemoteDevice *remote;
 @end

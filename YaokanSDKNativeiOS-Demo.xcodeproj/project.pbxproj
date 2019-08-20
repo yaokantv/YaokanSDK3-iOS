@@ -51,6 +51,7 @@
 		50A97E1022E994920030B4DC /* YKSecMatchDeviceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A97E0F22E994920030B4DC /* YKSecMatchDeviceTableViewController.m */; };
 		50A97E1322E9A61D0030B4DC /* YKMatchKeyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A97E1222E9A61C0030B4DC /* YKMatchKeyTableViewController.m */; };
 		50C0D8B222A504970059B1E4 /* YKRemoteACViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C0D8B022A504960059B1E4 /* YKRemoteACViewController.m */; };
+		F6F18517230BD556005C362F /* YKCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F18516230BD556005C362F /* YKCollectionViewCell.m */; };
 		FC168CA6009682B4D535FAB6 /* Pods_YaokanSDKNativeiOS_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B48C1C37CD9A9CFC693E645 /* Pods_YaokanSDKNativeiOS_Demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -167,6 +168,8 @@
 		50C0D8B022A504960059B1E4 /* YKRemoteACViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKRemoteACViewController.m; sourceTree = "<group>"; };
 		50C0D8B122A504970059B1E4 /* YKRemoteACViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKRemoteACViewController.h; sourceTree = "<group>"; };
 		7B48C1C37CD9A9CFC693E645 /* Pods_YaokanSDKNativeiOS_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YaokanSDKNativeiOS_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6F18515230BD556005C362F /* YKCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCollectionViewCell.h; sourceTree = "<group>"; };
+		F6F18516230BD556005C362F /* YKCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +242,8 @@
 				3FA2D87F1E2F71AD00551F8F /* YKRemoteTableViewController.m */,
 				3FA2D8811E305BEE00551F8F /* YKRemoteViewController.h */,
 				3FA2D8821E305BEE00551F8F /* YKRemoteViewController.m */,
+				F6F18515230BD556005C362F /* YKCollectionViewCell.h */,
+				F6F18516230BD556005C362F /* YKCollectionViewCell.m */,
 				50C0D8B122A504970059B1E4 /* YKRemoteACViewController.h */,
 				50C0D8B022A504960059B1E4 /* YKRemoteACViewController.m */,
 				3F5A21B71E27666F006BF365 /* Assets.xcassets */,
@@ -630,6 +635,7 @@
 				3FA2D8191E2C7F3B00551F8F /* UAProgressView.m in Sources */,
 				5034CFB822F96F44006C9E6A /* YKMatchRFKeyTableViewController.m in Sources */,
 				3FA2D8261E2E0DE900551F8F /* YKBrandTableViewController.m in Sources */,
+				F6F18517230BD556005C362F /* YKCollectionViewCell.m in Sources */,
 				3F5A21AD1E27666F006BF365 /* main.m in Sources */,
 				3FA2D80A1E2C68B400551F8F /* RadioButton.m in Sources */,
 				3FA2D7FC1E2C5FB500551F8F /* YKPasswordCell.m in Sources */,
