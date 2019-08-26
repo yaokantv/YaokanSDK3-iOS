@@ -13,9 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 @class YKRemoteDeviceType;
 @class YKRemoteDeviceBrand;
 
+
+/**
+ 二级匹配
+ */
 @interface YKSecMatchDeviceTableViewController : UIViewController
 
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet UILabel *lb;
 @property (nonatomic, assign) NSInteger tid;
 @property (nonatomic, assign) NSInteger bid;

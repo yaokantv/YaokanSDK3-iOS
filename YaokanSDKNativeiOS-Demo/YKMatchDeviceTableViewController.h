@@ -11,6 +11,9 @@
 @class YKRemoteDeviceType;
 @class YKRemoteDeviceBrand;
 
+/**
+ 一级匹配列表
+ */
 @interface YKMatchDeviceTableViewController : UITableViewController
 
 @property (nonatomic, strong) YKRemoteDeviceType *deviceType;
