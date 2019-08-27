@@ -17,7 +17,6 @@
 @interface YKRemoteTableViewController () <NSFetchedResultsControllerDelegate,UIActionSheetDelegate>
 
 @property (nonatomic) NSArray<YKRemoteDevice *> *remotes;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -27,42 +26,24 @@
     [super viewDidLoad];
     
     [self loadRemoteList];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadRemoteList:) name:NSManagedObjectContextObjectsDidChangeNotification
+                                               object:nil];
 }
 
-- (NSFetchedResultsController *)fetchedResultsController {
-    if (_fetchedResultsController == nil) {
-        _fetchedResultsController = [YKRemoteDevice fetchedResultsController];
-        _fetchedResultsController.delegate = self;
-    }
-    
-    return _fetchedResultsController;
+- (void)reloadRemoteList:(NSNotification *)notif {
+    [self loadRemoteList];
 }
 
 // 当数据库的数据有变化时更新Views
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    NSArray *items = [controller fetchedObjects];
-    //[self setupSubViewsWithItems:items];
-    self.remotes = items;
-    //    [self updateEditingVisible];
     dispatch_async(dispatch_get_main_queue(), ^ {
-        [self.tableView reloadData];
+        [self loadRemoteList];
     });
-    
-    NSLog(@"%s - items=%lu", __PRETTY_FUNCTION__, (unsigned long)items.count);
 }
 
 - (void)loadRemoteList {
-    NSError *error;
-    if (![[self fetchedResultsController] performFetch:&error]) {
-        // Update to handle the error appropriately.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//        //exit(-1);  // Fail
-    }
-
-    NSArray *items = [_fetchedResultsController fetchedObjects];
     self.remotes = [YKRemoteDevice modelsWithYkcId:[[YKCenterCommon sharedInstance] currentYKCId]];
-    
-    //    [self updateEditingVisible];
     [self.tableView reloadData];
 }
 
@@ -195,9 +176,6 @@
 
 - (IBAction)actionSheet:(id)sender {
     UIActionSheet *actionSheet = nil;
-//    NSString *appVersion = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Program Version", nil), [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
-//    NSString *sdkVersion = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"SDK Version", nil), [YaokanSDK sdkVersion]];
-//
     
     actionSheet = [[UIActionSheet alloc]
                    initWithTitle:@"选择操作"
@@ -217,9 +195,7 @@
 #pragma mark - actionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSInteger offset = 0;
-    //    if (![GizCommon sharedInstance].isLogin) {
-    //        offset = -1;
-    //    }
+
     if (buttonIndex == offset) {
 //        [self performSegueWithIdentifier:@"AddYK" sender:nil];
         YKDeviceTypeViewController *vc = [[UIStoryboard storyboardWithName:@"Remote" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([YKDeviceTypeViewController class])];
