@@ -66,13 +66,11 @@ static NSString *const YK_APP_SEC = @"";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    [self sdkRegist];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+    [self sdkRegist];
 }
 
 #pragma mark - table view
@@ -152,14 +150,20 @@ static NSString *const YK_APP_SEC = @"";
 }
 
 - (IBAction)sdkRegist{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak __typeof(self)weakSelf = self;
     [YaokanSDK registApp:YK_APP_ID secret:YK_APP_SEC completion:^(NSError * _Nonnull error) {
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
+        });
         if (error) {
             NSLog(@"注册失败 %@",error.description);
+            SHOW_ALERT(error.description);
         }else{
             NSLog(@"注册成功");
             dispatch_async(dispatch_get_main_queue(), ^{
-                __strong __typeof(weakSelf)strongSelf = weakSelf;
+                
                 UINavigationController *navCtrl = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
                 YKDeviceListViewController *devListCtrl = navCtrl.viewControllers.firstObject;
                 devListCtrl.parent = strongSelf;

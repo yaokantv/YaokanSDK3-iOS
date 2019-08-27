@@ -30,6 +30,15 @@ static inline void SHOW_ALERT_CANCEL(NSString *message, id delegate) {
     [alertView show];
 }
 
+static inline void SHOW_ALERT(NSString *message) {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"tip", nil)
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"NO", nil)
+                                              otherButtonTitles:nil];
+    [alertView show];
+}
+
 id YKGetControllerWithClass(Class class, UITableView *tableView, NSString *reuseIndentifer);
 
 @interface YKCenterCommon : NSObject
