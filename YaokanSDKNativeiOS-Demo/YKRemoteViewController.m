@@ -51,6 +51,14 @@
     
 }
 
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    if (isLearning) {
+        [YaokanSDK learnStopWithRemote:_remote];
+        isLearning = NO;
+    }
+}
+
 - (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
     CGPoint p = [gestureRecognizer locationInView:self.collectionView];
     
@@ -66,11 +74,8 @@
         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
         YKRemoteDeviceKey *key = keys[indexPath.row];
         //射频设备
-        if (kDeviceRFSwitchType == self.remote.typeId
-            || kDeviceRFSocketType == self.remote.typeId
-            || kDeviceRFCurtainType == self.remote.typeId
-            || kDeviceRFHangerType == self.remote.typeId) {
-            [YaokanSDK learnRFWithYKCId:[[YKCenterCommon sharedInstance] currentYKCId] remote:_remote key:key.key originRid:_remote.remoteId completion:^(NSString * _Nonnull ridNew, NSError * _Nonnull error) {
+        if ([YKRemoteDeviceType isRF:(NSInteger)_remote.typeId] ) {
+            [YaokanSDK learnRFWithRemote:_remote key:key.key completion:^(NSString * _Nonnull ridNew, NSError * _Nonnull error) {
                 NSLog(@"RF rid :%@",ridNew);
                 isLearning = NO;
                 [self showMessage:@"学习完成"];

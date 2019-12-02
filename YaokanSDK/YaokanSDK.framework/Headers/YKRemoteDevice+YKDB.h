@@ -47,6 +47,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSDictionary *)toJsonObject;
 
+- (BOOL)isRF;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -549,33 +549,43 @@ FOUNDATION_EXPORT const unsigned char YaokanSDKVersionString[];
 /**
  射频遥控器学习(对码阶段)
  
- @param ykcId 硬件mac地址
- @param remote YKRemoteMatchDevice 对象
+ @param mathchRemote YKRemoteMatchDevice 对象
  @param keyName 键名
- @param rid 原有的遥控器Id
  @param completion 回调
  */
-+ (void)learnRFMatchingWithYKCId:(NSString *)ykcId
-                          remote:(YKRemoteMatchDevice *)remote
-                             key:(NSString *)keyName
-                       originRid:(NSString *)rid
-                      completion:(void (^__nullable)(NSString *ridNew,NSError *error))completion;
++ (void)learnRFWithMatchRemote:(YKRemoteMatchDevice *)mathchRemote
+                                   key:(NSString *)keyName
+                            completion:(void (^__nullable)(NSString *ridNew,NSError *error))completion;
 
 
 /**
  射频遥学习(已创建遥控器)
  
- @param ykcId 硬件mac地址
  @param remote YKRemoteDevice 对象
  @param keyName 键名
- @param rid 原有的遥控器Id
  @param completion 回调
  */
-+ (void)learnRFWithYKCId:(NSString *)ykcId
-                  remote:(YKRemoteDevice *)remote
-                     key:(NSString *)keyName
-               originRid:(NSString *)rid
-              completion:(void (^__nullable)(NSString *ridNew,NSError *error))completion;
++ (void)learnRFWithRemote:(YKRemoteDevice *)remote
+                      key:(NSString *)keyName
+               completion:(void (^__nullable)(NSString *ridNew,NSError *error))completion;
+
+
+/**
+ 停止学习(基于已创建的遥控器)
+ 
+ @param remote YKRemoteDevice 对象
+
+ */
++ (void)learnStopWithRemote:(YKRemoteDevice *)remote;
+
+
+/**
+ 停止学习(匹配阶段的射频遥控器)
+ 
+ @param matchRemote YKRemoteMatchDevice 对象
+
+ */
++ (void)learnStopWithMatchRemote:(YKRemoteMatchDevice *)matchRemote;
 
 /**
  获取硬件版本
@@ -602,6 +612,11 @@ FOUNDATION_EXPORT const unsigned char YaokanSDKVersionString[];
  */
 + (NSString *)exportYKDevice;
 
+/**
+导入小苹果列表（）
+@param jsonStr 符合格式的json字符串
+*/
++(void)importYKDevce:(NSString *)jsonStr;
 /**
  获取 SDK 版本号
 

@@ -22,6 +22,25 @@ typedef NS_ENUM(NSInteger, RCDeviceNetStatus) {
     RCDeviceUnavailable = 3,
 };
 
+/**
+ @brief RCWirelessType 枚举，支持无线类型
+ */
+typedef NS_ENUM(NSInteger, RCWirelessType) {
+    
+    /** 不支持 */
+    RCWirelessTypeNone = 0,
+    
+    /** 红外 */
+    RCWirelessTypeIR = 1 << 0,
+    
+    /** 射频 */
+    RCWirelessTypeRF = 1 << 1,
+    
+    /** 红外和射频 */
+    RCWirelessTypeIR_RF = RCWirelessTypeIR | RCWirelessTypeRF,
+
+};
+
 @interface YKDevice : NSObject
 
 /**
@@ -65,6 +84,22 @@ typedef NS_ENUM(NSInteger, RCDeviceNetStatus) {
  RCDeviceNetStatus类型。设备的网络状态
  */
 @property (assign, nonatomic) RCDeviceNetStatus netStatus;
+
+/**
+ RDRemoteType类型 支持的无线通讯类型
+ */
+@property (assign, nonatomic,readonly) RCWirelessType wirelessType;
+
+
+/**
+modelName类型 型号
+*/
+@property (strong, nonatomic,readonly) NSString *modelName;
+
+/**
+ 当前固件版本
+ */
+@property (strong, nonatomic,readonly) NSString *version;
 
 
 /**

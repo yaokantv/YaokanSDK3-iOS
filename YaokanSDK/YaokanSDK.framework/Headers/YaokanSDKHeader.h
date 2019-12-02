@@ -51,7 +51,9 @@ typedef NS_ENUM(NSInteger, RemoteDeviceType){
     kDeviceRFCurtainType = 23,      // 射频遥控窗帘
     kDeviceRFHangerType = 24,       // 射频遥控衣架
     kDeviceRFLightController = 25,  // 灯控器
+    kDeviceRFLight = 37,            // 射频灯
     kDeviceRFFanLight = 38,         // 风扇灯
+    kDeviceWaterHeater = 40,        // 热水器
     kDeviceRFAirCooler = 41,        // 凉霸
     kDeviceRFFan = 42,              // 射频风扇
 };

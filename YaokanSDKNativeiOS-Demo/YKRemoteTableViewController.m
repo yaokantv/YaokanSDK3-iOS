@@ -200,6 +200,7 @@
 //        [self performSegueWithIdentifier:@"AddYK" sender:nil];
         YKDeviceTypeViewController *vc = [[UIStoryboard storyboardWithName:@"Remote" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([YKDeviceTypeViewController class])];
         UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:vc];
+        navc.modalPresentationStyle = UIModalPresentationFullScreen;
         [self.navigationController showViewController:navc sender:nil];
     }
     else if (buttonIndex == offset+1) {

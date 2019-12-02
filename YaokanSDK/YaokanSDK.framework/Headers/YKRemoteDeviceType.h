@@ -14,6 +14,7 @@
 @property (nullable, nonatomic, retain) NSNumber *tid;
 @property (nonatomic, assign) NSInteger rf;
 
+- (NSInteger)order;
 + (BOOL)isRF:(NSInteger)typeId;
 
 @end

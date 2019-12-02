@@ -63,10 +63,7 @@
         vc.deviceType = self.deviceType;
         vc.deviceBrand = brand;
         [self.navigationController pushViewController:vc animated:YES];
-    }else if(_deviceType.tid.integerValue == kDeviceRFSwitchType
-             ||_deviceType.tid.integerValue == kDeviceRFSocketType
-             ||_deviceType.tid.integerValue == kDeviceRFCurtainType
-             ||_deviceType.tid.integerValue == kDeviceRFHangerType){
+    }else if([YKRemoteDeviceType isRF:[_deviceType.tid integerValue]]){
 
         YKRemoteDeviceBrand *brand = self.brandList[indexPath.row];
         YKMatchRFKeyTableViewController *vc = [[UIStoryboard storyboardWithName:@"Remote" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([YKMatchRFKeyTableViewController class])];

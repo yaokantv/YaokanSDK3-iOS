@@ -16,6 +16,7 @@
 {
     NSArray *keys;
     YKRemoteMatchDevice *matchDevice;
+    BOOL isLearning;
 }
 @end
 
@@ -34,6 +35,14 @@
         matchDevice = mDevice;
         [weakSelf.tableView reloadData];
     }];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    if (isLearning) {
+        [YaokanSDK learnStopWithMatchRemote:matchDevice];
+        isLearning = NO;
+    }
 }
 
 #pragma mark - Table view data source
@@ -56,9 +65,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //    YKRemoteMatchDeviceKey *key = self.matchDevice.matchKeys[indexPath.row];
     YKRemoteMatchDeviceKey *key = keys[indexPath.row];
-    
+    isLearning = YES;
     [YaokanSDK sendRemoteMatchingWithYkcId:[[YKCenterCommon sharedInstance] currentYKCId] matchDevice:matchDevice cmdkey:key.key completion:^(BOOL result, NSError * _Nonnull error) {
-        
+        isLearning = NO;
     }];
     
 }
@@ -74,7 +83,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         YKRemoteMatchDeviceKey *key = matchDevice.matchKeys[indexPath.row];
-        [YaokanSDK learnRFMatchingWithYKCId:[[YKCenterCommon sharedInstance] currentYKCId] remote:matchDevice key:key.key originRid:matchDevice.rid completion:^(NSString * _Nonnull ridNew, NSError * _Nonnull error) {
+        [YaokanSDK learnRFWithMatchRemote:matchDevice key:key.key completion:^(NSString * _Nonnull ridNew, NSError * _Nonnull error) {
             
         }];
 

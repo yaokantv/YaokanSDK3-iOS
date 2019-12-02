@@ -30,4 +30,6 @@
 
 @property (nonatomic, strong)   NSArray<YKRemoteMatchDeviceKey *> *matchKeys;   // 匹配的按键数组
 
+- (YKRemoteMatchDeviceKey *)keyWithName:(NSString *)kn;
+
 @end

@@ -1,5 +1,5 @@
 PODS:
-  - YaokanSDK3 (1.0.2)
+  - YaokanSDK3 (1.0.4)
 
 DEPENDENCIES:
   - YaokanSDK3 (from `./`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "./"
 
 SPEC CHECKSUMS:
-  YaokanSDK3: dc0d567fafdc17036a7ab640755c2039bb1d166d
+  YaokanSDK3: 09c22d49e94179161e1f919261df915eb1caad94
 
 PODFILE CHECKSUM: 310a6be9785d3fa9ec3a9f0700ab1901500ceacd
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.3
