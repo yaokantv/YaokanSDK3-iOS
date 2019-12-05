@@ -106,11 +106,7 @@
 }
 
 - (IBAction)toAirLink:(id)sender {
-    if (YKGetCurrentSSID().length > 0) {
-        [self performSegueWithIdentifier:@"toAirLink" sender:nil];
-    } else {
-        SHOW_ALERT_CANCEL(NSLocalizedString(@"Please switch to Wifi environment", nil), nil);
-    }
+    [self performSegueWithIdentifier:@"toAirLink" sender:nil];
 }
 
 - (void)showAbout {

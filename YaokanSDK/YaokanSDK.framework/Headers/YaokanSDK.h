@@ -531,7 +531,7 @@ FOUNDATION_EXPORT const unsigned char YaokanSDKVersionString[];
 
 
 /**
- 基于现有的遥控器学习
+ 红外遥控器学习(基于已创建的)
  
  @param ykcId 硬件mac地址
  @param remote YKRemoteDevice 对象
