@@ -28,8 +28,10 @@
 
 @property (nonatomic, copy)   NSString *study_Id;
 
+@property (nonatomic, copy)   NSString *rf_body;
+
 @property (nonatomic, strong)   NSArray<YKRemoteMatchDeviceKey *> *matchKeys;   // 匹配的按键数组
 
 - (YKRemoteMatchDeviceKey *)keyWithName:(NSString *)kn;
-
+- (BOOL)isRF;
 @end

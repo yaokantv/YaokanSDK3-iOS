@@ -24,6 +24,8 @@ extern NSInteger const YKSDK_SMARTCONFIG_TIMEOUT;
 
 extern NSInteger const  YKSDK_DEVICE_REG_TIMEOUT;
 
+extern NSInteger const  YKSDK_DEVICE_CONFIG_ERROR;
+
 typedef NS_ENUM(NSInteger, RemoteDeviceType){
     kDeviceTypeUnkown = -1,
     kDeviceTypeCustom = 0,          // 自定义

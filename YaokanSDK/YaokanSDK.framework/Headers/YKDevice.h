@@ -117,6 +117,9 @@ modelName类型 型号
 +(YKDevice *)deviceByMac:(NSString *)mac;
 - (void)updateRemark:(NSString * _Nullable)remark alias:(NSString *)alias;
 
+- (BOOL)isSupprtRF;
++ (BOOL)isRFSupportByType:(NSString *)type;
+- (BOOL)isHardwarePreDownload;
 @end
 
 NS_ASSUME_NONNULL_END

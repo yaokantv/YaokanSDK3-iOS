@@ -63,6 +63,15 @@ FOUNDATION_EXPORT const unsigned char YaokanSDKVersionString[];
              completion:(void (^__nullable)(NSError * _Nullable error, YKDevice * _Nullable  device))completion;
 
 
+/**
+使用SoftAP 入网，完成后使用 block 回调返回结果。(指示灯两闪一停)
+@param ssid Wi-Fi 的 SSID 名称
+@param password Wi-Fi 的密码
+@param completion 绑定遥控中心设备完成的回调。如果绑定出错，返回 error 对象；如果有连接成功，error 为空，返回新入网的设备device 对象。
+*/
++ (void)bindYKCV2WithSSID:(NSString *)ssid
+                 password:(nullable NSString *)password
+               completion:(void (^__nullable)(NSError * _Nullable error, YKDevice * _Nullable  device))completion  API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(macos, watchos, tvos);
 
 /**
  获取设备列表
@@ -291,6 +300,9 @@ FOUNDATION_EXPORT const unsigned char YaokanSDKVersionString[];
                        completion:(void (^__nullable)(YKRemoteDevice *remote, NSError *error))completion;
 
 
++ (void)saveRemoteDeivceWithYKCId:(NSString *)ykcId
+                      matchDevice:(YKRemoteMatchDevice *)matchDevice
+                       completion:(void (^__nullable)(YKRemoteDevice *remote, NSError *error))completion;
 
 + (void)saveRFRemoteDeivceWithYKCId:(NSString *)ykcId
                         matchDevice:(YKRemoteMatchDevice *)matchDevice
@@ -604,6 +616,12 @@ FOUNDATION_EXPORT const unsigned char YaokanSDKVersionString[];
  @param completion 回调 flag 判断是否升级成功。
  */
 + (void)updateDeviceVersion:(NSString *)ykcId progress:(void (^__nullable)(float progressNum))progress completion:(void (^__nullable)(BOOL flag,NSError *error))completion;
+
+
+/// 查询设备信息
+/// @param ykcId 设备Mac地址
+/// @param completion 回调(字典类型)
++ (void)deviceInfo:(NSString *)ykcId completion:(void (^__nullable)(BOOL flag,NSDictionary *info))completion;
 
 /**
  导出遥控小苹果列表

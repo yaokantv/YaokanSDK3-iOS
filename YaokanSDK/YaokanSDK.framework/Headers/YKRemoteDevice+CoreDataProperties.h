@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *modelName;
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSString *remoteId;
+@property (nullable, nonatomic, copy) NSString *userRemoteId;
+@property (nullable, nonatomic, copy) NSString *rf_body;
 @property (nullable, nonatomic, copy) NSString *showName;
 @property (nullable, nonatomic, copy) NSString *rc_command;
 @property (nullable, nonatomic, copy) NSString *study_Id;

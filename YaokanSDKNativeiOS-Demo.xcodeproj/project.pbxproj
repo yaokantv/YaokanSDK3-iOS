@@ -43,6 +43,7 @@
 		3FE818C41E715E33002FD52F /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FE818C31E715E33002FD52F /* User.storyboard */; };
 		3FE818CA1E723994002FD52F /* YKTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE818C91E723994002FD52F /* YKTextCell.m */; };
 		3FE818CC1E723A16002FD52F /* YKTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FE818CB1E723A16002FD52F /* YKTextCell.xib */; };
+		50019A4024D8009D004B83FA /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50019A3F24D8009D004B83FA /* NetworkExtension.framework */; };
 		500E052022EEC3CD00DD6A57 /* YKSetboxLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 500E051F22EEC3CC00DD6A57 /* YKSetboxLocationViewController.m */; };
 		500E052322EEF3CD00DD6A57 /* YKMatchACViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 500E052222EEF3CD00DD6A57 /* YKMatchACViewController.m */; };
 		501FB08522AE25EF003A6C52 /* YKRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 501FB08422AE25EF003A6C52 /* YKRegistViewController.m */; };
@@ -151,6 +152,7 @@
 		3FE818C91E723994002FD52F /* YKTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKTextCell.m; sourceTree = "<group>"; };
 		3FE818CB1E723A16002FD52F /* YKTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YKTextCell.xib; sourceTree = "<group>"; };
 		43460D8E8D1B51F8F3C3E00E /* Pods-YaokanSDKNativeiOS-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YaokanSDKNativeiOS-Demo.release.xcconfig"; path = "Target Support Files/Pods-YaokanSDKNativeiOS-Demo/Pods-YaokanSDKNativeiOS-Demo.release.xcconfig"; sourceTree = "<group>"; };
+		50019A3F24D8009D004B83FA /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		500E051E22EEC3CC00DD6A57 /* YKSetboxLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSetboxLocationViewController.h; sourceTree = "<group>"; };
 		500E051F22EEC3CC00DD6A57 /* YKSetboxLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSetboxLocationViewController.m; sourceTree = "<group>"; };
 		500E052122EEF3CD00DD6A57 /* YKMatchACViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMatchACViewController.h; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC168CA6009682B4D535FAB6 /* Pods_YaokanSDKNativeiOS_Demo.framework in Frameworks */,
+				50019A4024D8009D004B83FA /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +396,7 @@
 		ACF749D161E65BEC47C3B512 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50019A3F24D8009D004B83FA /* NetworkExtension.framework */,
 				7B48C1C37CD9A9CFC693E645 /* Pods_YaokanSDKNativeiOS_Demo.framework */,
 			);
 			name = Frameworks;

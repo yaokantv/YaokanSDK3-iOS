@@ -185,7 +185,8 @@
                    otherButtonTitles:
                    NSLocalizedString(@"添加遥控", nil),
                    NSLocalizedString(@"检查升级", nil),
-                   NSLocalizedString(@"升级固件", nil)
+                   NSLocalizedString(@"升级固件", nil),
+                   NSLocalizedString(@"设备信息", nil)
                    , nil];
     
     actionSheet.actionSheetStyle = UIBarStyleBlackTranslucent;
@@ -235,6 +236,17 @@
             [av show];
         }];
         
+    }else if (buttonIndex == offset+3) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.detailsLabel.text = @"Loading...";
+        hud.removeFromSuperViewOnHide = YES;
+        [hud showAnimated:YES];
+        
+        [YaokanSDK deviceInfo:[[YKCenterCommon sharedInstance] currentYKCId] completion:^(BOOL flag, NSDictionary * _Nonnull info) {
+            [hud hideAnimated:YES];
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"设备信息" message:info.description delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil];
+            [av show];
+        }];
     }
 }
 

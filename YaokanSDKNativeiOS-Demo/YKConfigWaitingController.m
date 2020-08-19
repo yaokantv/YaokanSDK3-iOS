@@ -72,11 +72,19 @@
              }
          }];
          */
-        [YaokanSDK bindYKCWithSSID:dataCommon.ssid password:key completion:^(NSError * _Nullable error, YKDevice * _Nullable device) {
-            if (device && error == nil) {
-                [self onConfigSucceed:nil];
-            }
-        }];
+        if (@available(iOS 11.0, *)) {
+            [YaokanSDK bindYKCV2WithSSID:dataCommon.ssid password:key completion:^(NSError * _Nullable error, YKDevice * _Nullable device) {
+                if (device && error == nil) {
+                    [self onConfigSucceed:nil];
+                }
+            }];
+        } else {
+            [YaokanSDK bindYKCWithSSID:dataCommon.ssid password:key completion:^(NSError * _Nullable error, YKDevice * _Nullable device) {
+                if (device && error == nil) {
+                    [self onConfigSucceed:nil];
+                }
+            }];
+        }
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onWillEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
     } else {
